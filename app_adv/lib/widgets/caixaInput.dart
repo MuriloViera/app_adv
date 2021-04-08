@@ -11,10 +11,10 @@ class CaixaInput extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
         obscureText: this.senha,
         style: TextStyle(
           color: Theme.of(context).textTheme.headline6.color,
+          decoration: TextDecoration.none,
         ),
         controller: this.controlador,
         decoration: InputDecoration(
