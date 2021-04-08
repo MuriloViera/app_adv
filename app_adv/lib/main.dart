@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'widgets/login.dart';
+import 'widgets/login/login.dart';
+import 'widgets/menu/menu.dart';
 
 void main() => runApp(MyApp());
 
@@ -81,6 +82,10 @@ class MyApp extends StatelessWidget {
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
                   primary: Colors.amber, padding: EdgeInsets.all(30)))),
+      //Definição de Rotas.
+      routes: {
+        '/menu': (context) => Menu(),
+      },
       home: TelaPrincipal(),
     );
   }

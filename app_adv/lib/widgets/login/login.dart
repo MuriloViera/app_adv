@@ -1,6 +1,6 @@
-import './dica.dart';
-import './falha.dart';
-import './caixaInput.dart';
+import '../dica.dart';
+import '../falha.dart';
+import '../caixaInput.dart';
 import 'package:flutter/material.dart';
 //Imports necessários
 
@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
   void _validarLogin(BuildContext ctx) {
     if (this._usuarioController.text == 'marciogabriel1998@gmail.com' &&
         this._senhaController.text == 'gabriel') {
-      print('Logado');
+      Navigator.pushNamed(context, '/menu');
     } else {
       //Mostrar a tela de Erro ao logor, como esqueceu sua seha.
       showModalBottomSheet(

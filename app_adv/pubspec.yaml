@@ -67,7 +67,7 @@ flutter:
         - asset: assets/fonts/Cinzel-Regular.ttf
     - family: OpenSans
       fonts:
-        - asset: assets/fonts/OpenSans-Regular
+        - asset: assets/fonts/OpenSans-Regular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
