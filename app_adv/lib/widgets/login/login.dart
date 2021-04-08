@@ -54,6 +54,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(
             'LOGIN',
             style: Theme.of(context).appBarTheme.textTheme.headline1,

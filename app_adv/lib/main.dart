@@ -81,7 +81,13 @@ class MyApp extends StatelessWidget {
           //Definições para textButton.
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                  primary: Colors.amber, padding: EdgeInsets.all(30)))),
+                  primary: Colors.amber, padding: EdgeInsets.all(30))),
+          //Definição dos botoes elevados.        
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor:MaterialStateProperty.all<Color>(Colors.white),  
+          ),       
+                  )),
       //Definição de Rotas.
       routes: {
         '/menu': (context) => Menu(),
