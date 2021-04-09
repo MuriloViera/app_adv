@@ -1,6 +1,9 @@
+import 'package:local_auth/auth_strings.dart';
+import 'package:local_auth/local_auth.dart';
+
+import '../caixaInput.dart';
 import '../dica.dart';
 import '../falha.dart';
-import '../caixaInput.dart';
 import 'package:flutter/material.dart';
 //Imports necessários
 
@@ -16,6 +19,74 @@ class _LoginState extends State<Login> {
   var _fromId = GlobalKey<FormState>();
   int _indexSelecionado = 0;
   bool _admin;
+  bool biometria = false;
+
+  //Variavel Para autenticação com ID.
+  final LocalAuthentication _localAuthentication = LocalAuthentication();
+
+  //Defininfo se há biometria disponível
+  @override
+  initState() {
+    print('initState');
+    super.initState();
+    verificar();
+  }
+
+  //Funções Para o Uso do fingerPrint.
+  Future<bool> _isBiometricAvailable() async {
+    bool isAvailable = await _localAuthentication.canCheckBiometrics;
+    return isAvailable;
+  }
+
+  Future<void> _getListOfBiometricTypes() async {
+    List<BiometricType> listOfBiometrics =
+        await _localAuthentication.getAvailableBiometrics();
+  }
+
+  Future<void> _authenticateUser(BuildContext ctx) async {
+    bool isAuthenticated = await _localAuthentication.authenticate(
+      localizedReason: "Use a biometria para entrar no sistema",
+      biometricOnly: true,
+      androidAuthStrings: AndroidAuthMessages(
+        biometricRequiredTitle: 'Coloque Sua Digital',
+        signInTitle: 'Coloque Sua Digital',
+        biometricNotRecognized: 'Tente Novamnete',
+        biometricSuccess: 'Seja Bem Vindo',
+        biometricHint: '',
+        cancelButton: 'Cancelar',
+      ),
+    );
+    if (this._usuarioController.text == 'marcio' && isAuthenticated) {
+      this._admin = true;
+      Navigator.pushNamed(context, '/menu', arguments: this._admin);
+    }
+  }
+
+  //Logar Com Biometria
+  autenticarUsuario(BuildContext ctx) async {
+    print('autenticar usuario');
+
+    try {
+      if (await _isBiometricAvailable()) {
+        await _getListOfBiometricTypes();
+        await _authenticateUser(ctx);
+      }
+    } catch (e) {
+      showModalBottomSheet(
+          context: ctx,
+          builder: (_) {
+            return GestureDetector(
+              child: Falha(
+                  'ERRO AO LOGAR',
+                  'Certifique-se que há digital cadastrada em seu aparelho Tente a senha caso contrário',
+                  1.0,
+                  400.0),
+              onTap: () {},
+              behavior: HitTestBehavior.opaque,
+            );
+          });
+    }
+  }
 
   //Função Para Validar Login
   void _validarLogin(BuildContext ctx) {
@@ -57,6 +128,19 @@ class _LoginState extends State<Login> {
             });
       }
     });
+  }
+
+  //Função Para verificar se há biometria disponível.
+  verificar() async {
+    if (await _isBiometricAvailable()) {
+      setState(() {
+        this.biometria = true;
+      });
+    } else {
+      setState(() {
+        this.biometria = false;
+      });
+    }
   }
 
   @override
@@ -109,20 +193,32 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   CaixaInput('Usuario', this._usuarioController, false,
                       'Entre com usuario'),
                   CaixaInput('Senha', this._senhaController, true,
                       'entre com a senha'),
-                  Container(
-                    margin: EdgeInsets.all(25),
-                    height: 80,
-                    width: 80,
-                    child: FloatingActionButton(
-                      child: Icon(Icons.login),
-                      onPressed: () => this._validarLogin(context),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      (this.biometria)
+                          ? TextButton(
+                              onPressed: () => this.autenticarUsuario(context),
+                              child: Text('Logar Com Impressão Digital'))
+                          : SizedBox(
+                              height: 0,
+                            ),
+                      Container(
+                        margin: EdgeInsets.all(25),
+                        height: 80,
+                        width: 80,
+                        child: FloatingActionButton(
+                          child: Icon(Icons.login),
+                          onPressed: () => this._validarLogin(context),
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),
