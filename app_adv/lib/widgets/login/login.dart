@@ -15,19 +15,28 @@ class _LoginState extends State<Login> {
   var _senhaController = TextEditingController();
   var _fromId = GlobalKey<FormState>();
   int _indexSelecionado = 0;
+  bool _admin;
 
   //Função Para Validar Login
   void _validarLogin(BuildContext ctx) {
-    if (this._usuarioController.text == 'marciogabriel1998@gmail.com' &&
-        this._senhaController.text == 'gabriel') {
-      Navigator.pushNamed(context, '/menu');
+    if (this._usuarioController.text == 'marcio' &&
+            this._senhaController.text == 'gabriel' ||
+        this._usuarioController.text == 'murilo' &&
+            this._senhaController.text == 'vieira') {
+      this._admin = true;
+      Navigator.pushNamed(context, '/menu', arguments: this._admin);
+    } else if (this._usuarioController.text == 'teste' &&
+        this._senhaController.text == 'teste') {
+      this._admin = false;
+      Navigator.pushNamed(context, '/menu', arguments: this._admin);
     } else {
       //Mostrar a tela de Erro ao logor, como esqueceu sua seha.
       showModalBottomSheet(
           context: ctx,
           builder: (_) {
             return GestureDetector(
-              child: Falha('ERRO AO LOGAR', 'Usario ou Senha Errados !'),
+              child: Falha(
+                  'ERRO AO LOGAR', 'Usario ou Senha Errados !', 1.0, 300.0),
               onTap: () {},
               behavior: HitTestBehavior.opaque,
             );
@@ -102,8 +111,10 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 20,
                   ),
-                  CaixaInput('Usuario', this._usuarioController, false),
-                  CaixaInput('Senha', this._senhaController, true),
+                  CaixaInput('Usuario', this._usuarioController, false,
+                      'Entre com usuario'),
+                  CaixaInput('Senha', this._senhaController, true,
+                      'entre com a senha'),
                   Container(
                     margin: EdgeInsets.all(25),
                     height: 80,

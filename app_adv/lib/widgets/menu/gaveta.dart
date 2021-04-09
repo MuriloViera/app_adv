@@ -2,14 +2,21 @@ import 'package:app_adv/widgets/menu/listaGaveta.dart';
 import 'package:flutter/material.dart';
 
 class Gaveta extends StatelessWidget {
+  bool _admin;
+  final menuUser = ['Consultar Processos', 'Consultar Datas de Audiências'];
+  final menuAdmin = [
+    'Cadastrar Cliente',
+    'Cliente Cadastrados',
+    'Cadastrar Processo',
+    'Cadastrar Publicação',
+    'Cadastrar Data de Audiencia'
+  ];
+  Gaveta(this._admin);
   @override
   Widget build(BuildContext context) {
+    final menu = (this._admin) ? menuAdmin : menuUser;
     return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
       child: ListView(
-        // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
@@ -47,9 +54,7 @@ class Gaveta extends StatelessWidget {
               color: Theme.of(context).textTheme.headline6.color,
             ),
           ),
-          ListaGaveta('Cadastrar'),
-          ListaGaveta('Cadastrar'),
-          ListaGaveta('Cadastrar'),
+          ...menu.map((titulo) => ListaGaveta(titulo)),
         ],
       ),
     );

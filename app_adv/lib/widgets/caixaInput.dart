@@ -4,7 +4,8 @@ class CaixaInput extends StatelessWidget {
   final String label;
   final TextEditingController controlador;
   final bool senha;
-  CaixaInput(this.label, this.controlador, this.senha);
+  final String dica;
+  CaixaInput(this.label, this.controlador, this.senha, this.dica);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class CaixaInput extends StatelessWidget {
           fillColor: Theme.of(context).primaryColor,
           filled: true,
           labelText: this.label,
+          hintText: this.dica,
           labelStyle: Theme.of(context).textTheme.headline6,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         ),
