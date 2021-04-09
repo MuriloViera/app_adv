@@ -95,7 +95,7 @@ class _LoginState extends State<Login> {
                   Container(
                     margin: EdgeInsets.all(20),
                     child: Text(
-                      'Felipe Silveira & Mengali',
+                      'Felipe, Silveira & Mengali',
                       style: Theme.of(context).textTheme.headline1,
                     ),
                   ),

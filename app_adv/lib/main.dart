@@ -21,9 +21,6 @@ class MyApp extends StatelessWidget {
           fontFamily: 'OpenSans',
           //Definiçoes para se utilizar em textos. Text()
           textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
-                  color: Color.fromRGBO(19, 25, 37, 1),
-                ),
                 headline1: TextStyle(
                   fontFamily: 'Cinzel',
                   fontSize: 25,
@@ -34,6 +31,11 @@ class MyApp extends StatelessWidget {
                   fontSize: 25,
                   fontFamily: 'Cinzel',
                 ),
+                headline3: TextStyle(
+                  fontFamily: 'Cinzel',
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
                 headline4: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
@@ -41,11 +43,16 @@ class MyApp extends StatelessWidget {
                 headline5: TextStyle(
                   color: Color.fromRGBO(176, 158, 80, 0.9),
                 ),
+                headline6: TextStyle(
+                  color: Color.fromRGBO(19, 25, 37, 1),
+                ),
               ),
           // Definições de utilização para AppBar()
           appBarTheme: AppBarTheme(
               centerTitle: true,
               color: Color.fromRGBO(19, 25, 37, 1),
+              iconTheme:
+                  IconThemeData(color: Color.fromRGBO(176, 158, 80, 0.9)),
               textTheme: ThemeData.light().textTheme.copyWith(
                     headline1: TextStyle(
                       color: Color.fromRGBO(176, 158, 80, 0.9),
@@ -82,12 +89,12 @@ class MyApp extends StatelessWidget {
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
                   primary: Colors.amber, padding: EdgeInsets.all(30))),
-          //Definição dos botoes elevados.        
+          //Definição dos botoes elevados.
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-              backgroundColor:MaterialStateProperty.all<Color>(Colors.white),  
-          ),       
-                  )),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            ),
+          )),
       //Definição de Rotas.
       routes: {
         '/menu': (context) => Menu(),
