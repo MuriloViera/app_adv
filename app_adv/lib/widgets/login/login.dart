@@ -167,7 +167,7 @@ class _LoginState extends State<Login> {
                       Container(
                         margin: EdgeInsets.only(top: 30),
                         height: 5,
-                        width: 160,
+                        width: 150,
                         color: Color.fromRGBO(176, 158, 80, 0.9),
                       ),
                       Container(
@@ -180,7 +180,7 @@ class _LoginState extends State<Login> {
                       Container(
                         margin: EdgeInsets.only(top: 30),
                         height: 5,
-                        width: 160,
+                        width: 150,
                         color: Color.fromRGBO(176, 158, 80, 0.9),
                       ),
                     ],
@@ -190,6 +190,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       'Felipe, Silveira & Mengali',
                       style: Theme.of(context).textTheme.headline1,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   SizedBox(
@@ -211,8 +212,8 @@ class _LoginState extends State<Login> {
                             ),
                       Container(
                         margin: EdgeInsets.all(25),
-                        height: 80,
-                        width: 80,
+                        height: 60,
+                        width: 60,
                         child: FloatingActionButton(
                           child: Icon(Icons.login),
                           onPressed: () => this._validarLogin(context),
