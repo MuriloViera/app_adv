@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
       //Definição de Rotas.
       routes: {
         '/menu': (context) => Menu(),
-        '/cadastrarcliente' :(context) => ClienteCadastrar(),
+        '/cadastrarcliente': (context) => ClienteCadastrar(),
       },
       home: TelaPrincipal(),
     );
