@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class Gaveta extends StatelessWidget {
   bool _admin;
+  Gaveta(this._admin);
   final menuUser = ['Consultar Processos', 'Consultar Datas de Audiências'];
   final menuAdmin = [
     'Cadastrar Cliente',
@@ -11,9 +12,11 @@ class Gaveta extends StatelessWidget {
     'Cadastrar Publicação',
     'Cadastrar Data de Audiencia'
   ];
-  Gaveta(this._admin);
+
+  
   @override
   Widget build(BuildContext context) {
+    void rotaCadastrarCliente() => Navigator.pushNamed(context, '/cadastrarcliente');
     final menu = (this._admin) ? menuAdmin : menuUser;
     return Drawer(
       child: ListView(
@@ -54,7 +57,7 @@ class Gaveta extends StatelessWidget {
               color: Theme.of(context).textTheme.headline6.color,
             ),
           ),
-          ...menu.map((titulo) => ListaGaveta(titulo)),
+          ...menu.map((titulo) => ListaGaveta(titulo, rotaCadastrarCliente)),
         ],
       ),
     );

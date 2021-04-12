@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'widgets/clientes/cadastrar/clientesCadastrar.dart';
 import 'widgets/login/login.dart';
 import 'widgets/menu/menu.dart';
 
@@ -98,6 +99,7 @@ class MyApp extends StatelessWidget {
       //Definição de Rotas.
       routes: {
         '/menu': (context) => Menu(),
+        '/cadastrarcliente' :(context) => ClienteCadastrar(),
       },
       home: TelaPrincipal(),
     );
