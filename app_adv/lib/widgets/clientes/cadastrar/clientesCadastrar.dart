@@ -1,7 +1,8 @@
-import 'package:app_adv/widgets/menu/gaveta.dart';
+import 'package:app_adv/models/cadastroModel.dart';
+import 'package:app_adv/widgets/gaveta.dart';
 import 'package:flutter/material.dart';
-
 import '../../caixaInput.dart';
+import 'novoCadastro.dart';
 
 class ClienteCadastrar extends StatefulWidget {
   @override
@@ -20,6 +21,21 @@ class _ClienteCadastrarState extends State<ClienteCadastrar> {
   var _ufController = TextEditingController();
   var _usuarioController = TextEditingController();
   var _senhaController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  List<CadastroModel> listaCadastros = [];
+  void limparTela() {
+    this._nomeController.clear();
+    this._emailController.clear();
+    this._telefoneController.clear();
+    this._logradouroController.clear();
+    this._logradouroNumeroController.clear();
+    this._logradouroComplementoController.clear();
+    this._cidadeController.clear();
+    this._cepController.clear();
+    this._ufController.clear();
+    this._usuarioController.clear();
+    this._senhaController.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +49,7 @@ class _ClienteCadastrarState extends State<ClienteCadastrar> {
         drawer: Gaveta(true),
         body: SingleChildScrollView(
           child: Form(
+            key: this._formKey,
             child: Column(
               children: [
                 SizedBox(height: 15),
@@ -100,6 +117,39 @@ class _ClienteCadastrarState extends State<ClienteCadastrar> {
                     'Entre com o usuário de login do cliente'),
                 CaixaInput('Senha', this._senhaController, true,
                     'Entre com a senha de login do cliente'),
+                Container(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (this._formKey.currentState.validate()) {
+                        var dados = CadastroModel(
+                            this._nomeController.text,
+                            this._telefoneController.text,
+                            this._emailController.text,
+                            this._logradouroController.text,
+                            this._logradouroNumeroController.text,
+                            this._logradouroComplementoController.text,
+                            this._cidadeController.text,
+                            this._cepController.text,
+                            this._senhaController.text,
+                            this._ufController.text,
+                            this._usuarioController.text);
+                        print(dados);
+                        setState(() {
+                          this.listaCadastros.add(dados);
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return NovoCadastro();
+                              });
+                        });
+                      }
+                    },
+                    child: Text(
+                      'CADASTRAR',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                )
               ],
             ),
           ),

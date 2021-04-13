@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class LoginModel {
+class CadastroModel {
   final String nome;
   final String telefone;
   final String email;
@@ -13,17 +13,16 @@ class LoginModel {
   final String usuario;
   final String senha;
 
-  LoginModel(
-    @required this.nome, 
-    @required this.telefone, 
-    @required this.email,
-    @required this.logradouro,
-    @required this.logradouroNum,
-    this.logradouroComp,
-    @required this.cidade,
-    @required this.cep,
-    @required this.senha,
-    @required this.uf,
-    @required this.usuario );
-  
+  CadastroModel(
+      @required this.nome,
+      @required this.telefone,
+      @required this.email,
+      @required this.logradouro,
+      @required this.logradouroNum,
+      this.logradouroComp,
+      @required this.cidade,
+      @required this.cep,
+      @required this.senha,
+      @required this.uf,
+      @required this.usuario);
 }

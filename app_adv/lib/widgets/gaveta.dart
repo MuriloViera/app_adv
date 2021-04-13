@@ -1,23 +1,21 @@
-import 'package:app_adv/widgets/menu/listaGaveta.dart';
+import 'package:app_adv/widgets/listaGaveta.dart';
 import 'package:flutter/material.dart';
+
+import 'menu/listTitleMenu.dart';
 
 class Gaveta extends StatelessWidget {
   bool _admin;
   Gaveta(this._admin);
+  List<Map<String, Object>> lista;
   final menuUser = ['Consultar Processos', 'Consultar Datas de Audiências'];
   final menuAdmin = [
-    'Cadastrar Cliente',
-    'Cliente Cadastrados',
-    'Cadastrar Processo',
-    'Cadastrar Publicação',
-    'Cadastrar Data de Audiencia'
+    {'titulo': 'Cadastrar Cliente', 'route': '/cadastrarcliente'},
+    {'titulo': 'Clientes Cadastrados', 'route': '/clientescadastrados'},
   ];
 
-  
   @override
   Widget build(BuildContext context) {
-    void rotaCadastrarCliente() => Navigator.pushNamed(context, '/cadastrarcliente');
-    final menu = (this._admin) ? menuAdmin : menuUser;
+    this.lista = (this._admin) ? menuAdmin : menuUser;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -57,7 +55,9 @@ class Gaveta extends StatelessWidget {
               color: Theme.of(context).textTheme.headline6.color,
             ),
           ),
-          ...menu.map((titulo) => ListaGaveta(titulo, rotaCadastrarCliente)),
+          ...lista.map((e) => ListaGaveta(
+              e['titulo'], () => Navigator.pushNamed(context, e['route']))),
+          ListTitleMenu(),
         ],
       ),
     );

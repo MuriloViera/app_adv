@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
     }
   }
 
-  //Função para utilizar bottomNavigati0on
+  //Função para utilizar bottomNavigation
   void _itemPressionado(int index) {
     setState(() {
       _indexSelecionado = index;

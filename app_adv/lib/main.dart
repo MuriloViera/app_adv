@@ -1,3 +1,4 @@
+import '/widgets/clientes/cadastrados/clientesCadastrados.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -100,6 +101,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/menu': (context) => Menu(),
         '/cadastrarcliente': (context) => ClienteCadastrar(),
+        '/clientescadastrados': (context) => ClientesCadastrados(),
       },
       home: TelaPrincipal(),
     );

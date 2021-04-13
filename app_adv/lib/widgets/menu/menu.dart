@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../falha.dart';
-import 'gaveta.dart';
+import '../gaveta.dart';
 
 //Função para utilizar bottomNavigati0on
 
