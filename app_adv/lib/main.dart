@@ -1,8 +1,15 @@
+import 'package:app_adv/datasAudiencia/datasAudiencia.dart';
+import 'package:app_adv/widgets/clientes/andamento/andamentos.dart';
+import 'package:app_adv/widgets/clientes/andamento/cadastrarAndamento.dart';
+import 'package:app_adv/widgets/clientes/dataAudiencia/cadastrarData.dart';
+import 'package:app_adv/widgets/clientes/processos/Processos.dart';
+
 import '/widgets/clientes/cadastrados/clientesCadastrados.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'widgets/clientes/cadastrar/clientesCadastrar.dart';
+import 'widgets/clientes/dadosClientes/dados.dart';
 import 'widgets/login/login.dart';
 import 'widgets/menu/menu.dart';
 
@@ -102,6 +109,12 @@ class MyApp extends StatelessWidget {
         '/menu': (context) => Menu(),
         '/cadastrarcliente': (context) => ClienteCadastrar(),
         '/clientescadastrados': (context) => ClientesCadastrados(),
+        '/verdadosclientes': (context) => Dados(),
+        '/processos': (context) => Processos(),
+        '/andamentos': (context) => Andamentos(),
+        '/cadastrarandamento': (context) => CadastrarAndamento(),
+        '/cadastrarDataAudiencia': (context) => CadastrarData(),
+        '/verdataaudiencia': (context) => DatasAudiencia(),
       },
       home: TelaPrincipal(),
     );

@@ -22,7 +22,6 @@ class _ClienteCadastrarState extends State<ClienteCadastrar> {
   var _usuarioController = TextEditingController();
   var _senhaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  List<CadastroModel> listaCadastros = [];
   void limparTela() {
     this._nomeController.clear();
     this._emailController.clear();
@@ -35,6 +34,7 @@ class _ClienteCadastrarState extends State<ClienteCadastrar> {
     this._ufController.clear();
     this._usuarioController.clear();
     this._senhaController.clear();
+    Navigator.pop(context);
   }
 
   @override
@@ -121,25 +121,15 @@ class _ClienteCadastrarState extends State<ClienteCadastrar> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (this._formKey.currentState.validate()) {
-                        var dados = CadastroModel(
-                            this._nomeController.text,
-                            this._telefoneController.text,
-                            this._emailController.text,
-                            this._logradouroController.text,
-                            this._logradouroNumeroController.text,
-                            this._logradouroComplementoController.text,
-                            this._cidadeController.text,
-                            this._cepController.text,
-                            this._senhaController.text,
-                            this._ufController.text,
-                            this._usuarioController.text);
-                        print(dados);
+                        print("Cadastro feito com sucesso");
                         setState(() {
-                          this.listaCadastros.add(dados);
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return NovoCadastro();
+                                return NovoCadastro(
+                                    this.limparTela,
+                                    'Cadastra Novamente',
+                                    'Deseja Cadastar um Novo cliente ?');
                               });
                         });
                       }

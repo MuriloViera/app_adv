@@ -7,10 +7,34 @@ class Gaveta extends StatelessWidget {
   bool _admin;
   Gaveta(this._admin);
   List<Map<String, Object>> lista;
-  final menuUser = ['Consultar Processos', 'Consultar Datas de Audiências'];
+  final menuUser = [
+    {
+      'titulo': 'Consultar Processos',
+      'route': '/processos',
+      'argumentos': false
+    },
+    {
+      'titulo': 'Datas De Audiencia',
+      'route': '/verdataaudiencia',
+      'argumentos': false
+    },
+  ];
   final menuAdmin = [
-    {'titulo': 'Cadastrar Cliente', 'route': '/cadastrarcliente'},
-    {'titulo': 'Clientes Cadastrados', 'route': '/clientescadastrados'},
+    {
+      'titulo': 'Cadastrar Cliente',
+      'route': '/cadastrarcliente',
+      'argumentos': true
+    },
+    {
+      'titulo': 'Clientes Cadastrados',
+      'route': '/clientescadastrados',
+      'argumentos': true
+    },
+    {
+      'titulo': 'Datas De Audiencia',
+      'route': '/verdataaudiencia',
+      'argumentos': true
+    },
   ];
 
   @override
@@ -56,7 +80,9 @@ class Gaveta extends StatelessWidget {
             ),
           ),
           ...lista.map((e) => ListaGaveta(
-              e['titulo'], () => Navigator.pushNamed(context, e['route']))),
+              e['titulo'],
+              () => Navigator.pushNamed(context, e['route'],
+                  arguments: {'admin': e['argumentos']}))),
           ListTitleMenu(),
         ],
       ),
