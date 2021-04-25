@@ -127,6 +127,9 @@ class _LoginState extends State<Login> {
                   "Dica de Login: ", 'Utilizar o Usuario e senha de cadastro');
             });
       }
+      if (index == 0) {
+        Navigator.pushNamed(context, '/sobre');
+      }
     });
   }
 

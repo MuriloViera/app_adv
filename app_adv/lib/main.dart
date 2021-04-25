@@ -1,4 +1,5 @@
 import 'package:app_adv/datasAudiencia/datasAudiencia.dart';
+import 'package:app_adv/sobre/sobre.dart';
 import 'package:app_adv/widgets/clientes/andamento/andamentos.dart';
 import 'package:app_adv/widgets/clientes/andamento/cadastrarAndamento.dart';
 import 'package:app_adv/widgets/clientes/dataAudiencia/cadastrarData.dart';
@@ -115,6 +116,7 @@ class MyApp extends StatelessWidget {
         '/cadastrarandamento': (context) => CadastrarAndamento(),
         '/cadastrarDataAudiencia': (context) => CadastrarData(),
         '/verdataaudiencia': (context) => DatasAudiencia(),
+        '/sobre': (context) => Sobre(),
       },
       home: TelaPrincipal(),
     );
